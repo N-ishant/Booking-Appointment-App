@@ -38,6 +38,7 @@ function showUserOnScreen(user){
         let deleteBtn = document.createElement('input');
         deleteBtn.type = 'button';
         deleteBtn.value = "Delete";
+        deleteBtn.style.backgroundColor = 'lightPink';
         deleteBtn.onclick = () => {
             localStorage.removeItem(user.name);
             userList.removeChild(li);
@@ -46,6 +47,7 @@ function showUserOnScreen(user){
         let editBtn = document.createElement('input');
         editBtn.type = 'button';
         editBtn.value = 'Edit';
+        editBtn.style.backgroundColor = 'lightBlue';
         editBtn.onclick = () => {
             localStorage.removeItem(user.name);
             userList.removeChild(li);
