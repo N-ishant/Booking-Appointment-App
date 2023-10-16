@@ -1,6 +1,7 @@
 let myForm = document.getElementById('my-form');
 let nameInput = document.getElementById('name');
 let emailInput = document.getElementById('email');
+let mobileInput = document.getElementById('mobile');
 let mssg = document.querySelector('.msg');
 let userList = document.getElementById('users');
 
@@ -10,7 +11,7 @@ myForm.addEventListener('submit' , onSubmit);
 function onSubmit(e) {
     e.preventDefault();
 
-    if(nameInput.value === "" || emailInput.value === ""){
+    if(nameInput.value === "" || emailInput.value === "" || mobileInput.value === ""){
         //Display an error message
         mssg.classList.add('error');
         mssg.textContent = 'Please enter all fields';
@@ -21,10 +22,12 @@ function onSubmit(e) {
         //get user input values
          let name = e.target.name.value;
          let email = e.target.email.value;
+         let mobile = e.target.mobile.value;
 
          let user = {
              name,
-             email
+             email,
+             mobile
          };
          localStorage.setItem(user.name , JSON.stringify(user));
          showUserOnScreen(user);
@@ -33,7 +36,7 @@ function onSubmit(e) {
 
 function showUserOnScreen(user){
         let li = document.createElement('li');
-        let details = document.createTextNode(`${nameInput.value} : ${emailInput.value} `);
+        let details = document.createTextNode(`${nameInput.value} : ${emailInput.value} : ${mobileInput.value} `);
 
         let deleteBtn = document.createElement('input');
         deleteBtn.type = 'button';
@@ -47,12 +50,13 @@ function showUserOnScreen(user){
         let editBtn = document.createElement('input');
         editBtn.type = 'button';
         editBtn.value = 'Edit';
-        editBtn.style.backgroundColor = 'lightBlue';
+        editBtn.style.backgroundColor = 'skyBlue';
         editBtn.onclick = () => {
             localStorage.removeItem(user.name);
             userList.removeChild(li);
             document.getElementById('name').value = user.name;
             document.getElementById('email').value = user.email;
+            document.getElementById('mobile').value = user.mobile;
         }
 
         li.appendChild(details);
@@ -63,4 +67,5 @@ function showUserOnScreen(user){
         //Clear Fields
         nameInput.value = ' ';
         emailInput.value = ' ';
+        mobileInput.value = ' ';
 }
